@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+    }
+    .calculator {
+      background-color: #444;
+      max-width: 300px;
+      margin: 0 auto;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+    .output {
+      text-align: right;
+      font-size: 24px;
+      color: white;
+      margin-bottom: 10px;
+    }
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 10px;
+    }
+    button {
+      padding: 10px;
+      font-size: 18px;
+      border: none;
+      border-radius: 5px;
+      background-color: #666;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #555;
+    }
+    #equals {
+      background-color: #d9534f;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <div class="output" id="output">0</div>
+    <div class="buttons">
+      <button onclick="clearOutput()">C</button>
+      <button onclick="appendToOutput('7')">7</button>
+      <button onclick="appendToOutput('8')">8</button>
+      <button onclick="appendToOutput('9')">9</button>
+      <button onclick="appendToOutput('4')">4</button>
+      <button onclick="appendToOutput('5')">5</button>
+      <button onclick="appendToOutput('6')">6</button>
+      <button onclick="appendToOutput('1')">1</button>
+      <button onclick="appendToOutput('2')">2</button>
+      <button onclick="appendToOutput('3')">3</button>
+      <button onclick="appendToOutput('0')">0</button>
+      <button onclick="appendToOutput('+')">+</button>
+      <button onclick="appendToOutput('-')">-</button>
+      <button onclick="appendToOutput('*')">*</button>
+      <button onclick="appendToOutput('/')">/</button>
+      <button onclick="calculate()">=</button>
+    </div>
+  </div>
+
+  <script>
+    let outputElement = document.getElementById("output");
+
+    function appendToOutput(value) {
+      if (outputElement.innerText === "0") {
+        outputElement.innerText = value;
+      } else {
+        outputElement.innerText += value;
+      }
+    }
+
+    function clearOutput() {
+      outputElement.innerText = "0";
+    }
+
+    function calculate() {
+      try {
+        outputElement.innerText = eval(outputElement.innerText);
+      } catch (error) {
+        outputElement.innerText = "Error";
+      }
+    }
+  </script>
+</body>
+</html>
